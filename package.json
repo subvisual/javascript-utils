@@ -1,0 +1,15 @@
+{
+  "name": "@subvisual/utils",
+  "description": "Collection of reusable Javascript utilities by Subvisual",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/subvisual/javascript-utils.git"
+  },
+  "author": "Subvisual <contact@subvisual.com> (https://subvisual.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/subvisual/javascript-utils/issues"
+  },
+  "homepage": "https://github.com/subvisual/javascript-utils"
+}
