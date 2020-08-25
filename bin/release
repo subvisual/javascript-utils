@@ -1,5 +1,24 @@
 #!/bin/sh
 
+# Exit early if any command fails
+set -e
+
+# Assert we're releasing the master branch
+if [[ $(git branch --show-current) != 'master' ]]; then
+  cat >&2 <<'GIT_NOT_IN_MASTER'
+You're trying to release from Git branch $(git branch --show-current) instead of master. To prevent releases from unstable branches, releases are only allowed from master.
+GIT_NOT_IN_MASTER
+  exit 1
+fi
+
+# Assert there are no pending changes in repository
+if [[ $(git status -s) ]]; then
+  cat >&2 <<'GIT_CHANGED'
+There are some uncommitted changes in this repository. This might introduce unwanted artifacts in the release. Please stash or commit your changes prior to cooking a new release.
+GIT_CHANGED
+  exit 2
+fi
+
 # Build project
 bin/build
 
@@ -8,6 +27,11 @@ sed '/^\s*"private":\s*true,\s*$/d' package.json > dist/package.json
 
 # Copy other required files to dist/
 cp README* LICENSE* dist/
+
+# Tag the release
+CURRENT_VERSION=`awk 'match($0, /"version":\s*"([^"]*)"/, c) { print c[1] }' package.json`
+git tag "v${CURRENT_VERSION}"
+git push --tags
 
 # Publish dist/
 yarn publish dist/
