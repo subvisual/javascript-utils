@@ -22,12 +22,6 @@ fi
 # Build project
 bin/build
 
-# Copy package.json without 'private'
-sed '/^\s*"private":\s*true,\s*$/d' package.json > dist/package.json
-
-# Copy other required files to dist/
-cp README* LICENSE* dist/
-
 # Tag the release
 CURRENT_VERSION=`awk 'match($0, /"version":\s*"([^"]*)"/, c) { print c[1] }' package.json`
 git tag "v${CURRENT_VERSION}"

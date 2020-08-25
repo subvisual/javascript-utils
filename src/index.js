@@ -1,7 +1,7 @@
-export { default as isURL } from "./isURL"
-export { default as normalizePathForRegExp } from "./normalizePathForRegExp"
+const isURL = require('./isURL')
+const normalizePathForRegExp = require('./normalizePathForRegExp')
 
-export default {
+module.exports = {
   isURL,
   normalizePathForRegExp
 }

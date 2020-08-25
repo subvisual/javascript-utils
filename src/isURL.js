@@ -1,4 +1,4 @@
-module.exports = (string) => {
+function isURL(string) {
   try {
     /* eslint-disable-next-line no-new */
     new URL(string)
@@ -9,3 +9,4 @@ module.exports = (string) => {
   return true
 }
 
+module.exports = isURL

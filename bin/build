@@ -1,5 +1,19 @@
 #!/bin/sh
 
-export NODE_ENV=production
+# Exit early if any command fails
+set -e
 
-yarn run build
+echo 'Cleaning out ./dist'
+rm -vr ./dist
+
+echo 'Creating ./dist'
+mkdir -v ./dist
+
+echo 'Copying scripts from ./src to ./dist'
+cp -v ./src/* ./dist
+
+echo 'Copying package.json to ./dist'
+sed '/^\s*"private":\s*true,\s*$/d' package.json > dist/package.json
+
+echo 'Copying other required files'
+cp -v README* LICENSE* dist/
