@@ -7,7 +7,7 @@ The format is based on [Keep a Changelog], and this project adheres to
 [Semantic Versioning].
 
 
-Unreleased
+v0.1.0
 ----------
 
 - Add `normalizePathForRegExp` to prepare a string to be used as a path inside

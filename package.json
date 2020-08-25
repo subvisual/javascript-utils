@@ -2,7 +2,7 @@
   "private": true,
   "name": "@subvisual/utils",
   "description": "Collection of reusable Javascript utilities by Subvisual",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "author": "Subvisual <contact@subvisual.com> (https://subvisual.com)",
   "license": "ISC",
   "main": "index.js",
