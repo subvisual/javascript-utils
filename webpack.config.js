@@ -1,18 +1,6 @@
-const fs = require('fs')
-const path = require('path')
-
-// Each file in ./src is an entry
+const environment = process.env.NODE_ENV || 'development'
 
 module.exports = {
-  mode: 'production',
-  entry: fs.
-    readdirSync(path.resolve(__dirname, 'src'), { withFileTypes: true }).
-    filter(dirent => dirent.isFile && dirent.name.match(/\.js$/)).
-    reduce((acc, dirent) => {
-      const { name } = dirent
-      const absolutePath = path.resolve(__dirname, 'src', name)
-      const basename = path.basename(name, ".js")
-
-      return { ...acc, [basename]: absolutePath }
-    }, {})
+  ...require('./config/webpack/common')(__dirname),
+  ...require('./config/webpack/' + environment)(__dirname)
 }
